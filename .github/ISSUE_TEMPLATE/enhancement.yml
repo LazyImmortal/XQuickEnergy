@@ -1,0 +1,30 @@
+name: 功能建议
+description: 功能建议使用此模板进行提交
+labels: [ enhancement ]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ### 请在下方填写功能需求或建议。
+  - type: dropdown
+    attributes:
+      label: 增强类型
+      options:
+        - 功能型增强
+        - 优化型增强
+        - 强迫症增强
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: 具体描述
+      description: 请在下方详细描述功能需求或建议。
+    validations:
+      required: true
+  - type: checkboxes
+    attributes:
+      label: 确认一下你提交的信息
+      description: 为了确保 issues 的质量和避免浪费不必要的时间，未勾选下方选项的 issues 将直接被关闭。
+      options:
+        - label: 我确保上述信息准确无误
+          required: true
