@@ -64,6 +64,16 @@ public class XposedHook implements IXposedHookLoadPackage {
             classLoader = lpparam.classLoader;
             hookRpcCall(lpparam.classLoader);
             hookService(lpparam.classLoader);
+            try {
+                XposedHelpers.findAndHookMethod(
+                        classLoader.loadClass("com.alipay.mobile.common.rpc.ext.CommonbizNetworkUtil"),
+                        "isInBackground", XC_MethodReplacement.returnConstant(Boolean.FALSE));
+            } catch (Throwable ignored) { }
+            try {
+                XposedHelpers.findAndHookMethod(
+                        classLoader.loadClass("com.alipay.mobile.common.transport.utils.MiscUtils"),
+                        "isAtFrontDesk", Context.class, XC_MethodReplacement.returnConstant(Boolean.TRUE));
+            } catch (Throwable ignored) { }
         }
     }
 
